@@ -1,5 +1,5 @@
 check-envs:
-	test -n "${SONAR_TOKEN}"
+	@test -n "${SONAR_TOKEN}"
 
 sonarcloud: check-envs
 	@./gradlew sonarqube \

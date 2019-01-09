@@ -11,7 +11,7 @@ check-envs:
 sonarcloud: check-envs
 	@./gradlew sonarqube --info \
          -Dsonar.organization=${SONAR_ORGANIZATION} \
-         -Dsonar.projectKey=${SONR_PROJECT_KEY} \
+         -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
          -Dsonar.host.url=https://sonarcloud.io \
          -Dsonar.pullrequest.github.token.secured=${GITHUB_TOKEN} \
          -Dsonar.pullrequest.base=${TARGET_BRANCH_NAME} \

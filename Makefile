@@ -31,6 +31,11 @@ check-env-sonar_project_key:
 check-env-repository_slug:
 	test -n "${REPOSITORY_SLUG}"
 
+set-upstreams: check-env-branch_name check-env-target_branch_name
+	git branch --set-upstream-to=origin/${TARGET_BRANCH_NAME} ${TARGET_BRANCH_NAME}
+	git branch --set-upstream-to=origin/${BRANCH_NAME} ${BRANCH_NAME}
+	git fetch --all
+
 sonarcloud:
 	@if ( [ ! -z "${CIRCLE_PULL_REQUEST}" ] ); then \
 		echo 'Pull Request detected.'; \

@@ -56,7 +56,8 @@ sonarcloud-pullreq: check-envs-pullreq
          -Dsonar.pullrequest.key=${CIRCLE_PR_NUMBER} \
          -Dsonar.pullrequest.provider=github \
          -Dsonar.pullrequest.github.repository=${REPOSITORY_SLUG} \
-         -Dsonar.login=${SONAR_TOKEN}
+         -Dsonar.login=${SONAR_TOKEN} \
+         -Dsonar.scm.disabled=true
 
 sonarcloud-merge: check-envs-merge
 	@./gradlew sonarqube --info \
@@ -64,4 +65,5 @@ sonarcloud-merge: check-envs-merge
 		-Dsonar.projectKey=${SONAR_PROJECT_KEY} \
 		-Dsonar.host.url=https://sonarcloud.io \
 		-Dsonar.branch.name=${CIRCLE_BRANCH} \
-		-Dsonar.login=${SONAR_TOKEN}
+		-Dsonar.login=${SONAR_TOKEN} \
+		-Dsonar.scm.disabled=true

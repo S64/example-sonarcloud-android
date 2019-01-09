@@ -4,7 +4,8 @@ REPOSITORY_SLUG:=${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}
 SONAR_ORGANIZATION:=s64-github
 SONAR_PROJECT_KEY:=example-sonarcloud-android
 
-check-envs: check-env-sonar_token check-env-github_token check-env-branch_name check-env-pr_id check-env-target_branch_name check-env-sonar_org check-env-sonar_project_key check-env-repository_slug
+check-envs-pullreq: check-env-sonar_token check-env-github_token check-env-branch_name check-env-pr_id check-env-target_branch_name check-env-sonar_org check-env-sonar_project_key check-env-repository_slug
+check-envs-merge: check-env-sonar_token check-env-branch_name check-env-sonar_org check-env-sonar_project_key
 
 check-env-sonar_token:
 	@test -n "${SONAR_TOKEN}"
@@ -30,7 +31,7 @@ check-env-sonar_project_key:
 check-env-repository_slug:
 	test -n "${REPOSITORY_SLUG}"
 
-sonarcloud: check-envs
+sonarcloud-pullreq: check-envs-pullreq
 	@./gradlew sonarqube --info \
          -Dsonar.organization=${SONAR_ORGANIZATION} \
          -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
@@ -42,3 +43,11 @@ sonarcloud: check-envs
          -Dsonar.pullrequest.provider=github \
          -Dsonar.pullrequest.github.repository=${REPOSITORY_SLUG} \
          -Dsonar.login=${SONAR_TOKEN}
+
+sonarcloud-merge: check-envs-merge
+	@./gradlew sonarqube --info \
+		-Dsonar.organization=${SONAR_ORGANIZATION} \
+		-Dsonar.projectKey=${SONAR_PROJECT_KEY} \
+		-Dsonar.host.url=https://sonarcloud.io \
+		-Dsonar.branch.name=${CIRCLE_BRANCH} \
+		-Dsonar.login=${SONAR_TOKEN}

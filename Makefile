@@ -7,13 +7,12 @@ check-envs:
 
 sonarcloud: check-envs
 	@./gradlew sonarqube \
-		-Dsonar.projectKey=example-sonarcloud-android \
-		-Dsonar.organization=s64-github \
 		-Dsonar.host.url=https://sonarcloud.io \
 		-Dsonar.login=${SONAR_TOKEN} \
+		-Dsonar.organization=s64-github \
+		-Dsonar.pullrequest.github.token.secured=${GITHUB_TOKEN} \
+		-Dsonar.pullrequest.base=${TARGET_BRANCH_NAME} \
 		-Dsonar.pullrequest.branch=${BRANCH_NAME} \
 		-Dsonar.pullrequest.key=${PULL_REQUEST_ID} \
-		-Dsonar.pullrequest.base=${TARGET_BRANCH_NAME} \
 		-Dsonar.pullrequest.provider=github \
-		-Dsonar.pullrequest.github.repository=S64/example-sonarcloud-android \
-		-Dsonar.pullrequest.github.token.secured=${GITHUB_TOKEN}
+		-Dsonar.pullrequest.github.repository=S64/example-sonarcloud-android

@@ -10,7 +10,7 @@ jobs:
     executor: android-sdk
     steps:
       - checkout
-      - run: make sonarcloud
+      - run: make -j$(nproc) sonarcloud
 
 workflows:
   test:

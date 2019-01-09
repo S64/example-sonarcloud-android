@@ -10,4 +10,6 @@ sonarcloud: check-envs
 		-Dsonar.host.url=https://sonarcloud.io \
 		-Dsonar.login=${SONAR_TOKEN} \
 		-Dsonar.github.oauth=${GITHUB_TOKEN} \
-		-Dsonar.github.pullRequest=${PULL_REQUEST_ID}
+		-Dsonar.github.repository='S64/example-sonarcloud-android' \
+		-Dsonar.github.pullRequest=${PULL_REQUEST_ID} \
+		-Dsonar.analysis.mode=preview

@@ -33,7 +33,7 @@ check-env-repository_slug:
 
 set-upstreams: check-env-branch_name check-env-target_branch_name
 	git branch --set-upstream-to=origin/${TARGET_BRANCH_NAME} ${TARGET_BRANCH_NAME}
-	git branch --set-upstream-to=origin/${BRANCH_NAME} ${BRANCH_NAME}
+	git branch --set-upstream-to=origin/${CIRCLE_BRANCH} ${CIRCLE_BRANCH}
 	git fetch --all
 
 sonarcloud:

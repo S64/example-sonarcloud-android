@@ -5,7 +5,7 @@ check-envs:
 	test -n "${BRANCH_NAME}"
 	test -n "${TARGET_BRANCH_NAME}"
 	test -n "${SONAR_ORGANIZATION}"
-	test -n "${SONR_PROJECT_KEY}"
+	test -n "${SONAR_PROJECT_KEY}"
 	test -n "${REPOSITORY_SLUG}"
 
 sonarcloud: check-envs

@@ -1,1 +1,2 @@
+rootProject.name = 'example-sonarcloud-android' // https://blog.s64.jp/entry/gradle_sonarcloud_component-key_error
 include ':app'

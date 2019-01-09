@@ -1,6 +1,8 @@
 CIRCLE_PR_NUMBER?=$(shell echo $${CIRCLE_PULL_REQUEST\#\#*/}) # https://blog.s64.jp/entry/makefile_gh-pr-num_extractor
 TARGET_BRANCH_NAME:=master
 REPOSITORY_SLUG:=$${CIRCLE_PROJECT_USERNAME}/$${CIRCLE_PROJECT_REPONAME}
+SONAR_ORGANIZATION:=s64-github
+SONAR_PROJECT_KEY:=example-sonarcloud-android
 
 check-envs: check-env-sonar_token check-env-github_token check-env-branch_name check-env-pr_id check-env-target_branch_name check-env-sonar_org check-env-sonar_project_key check-env-repository_slug
 

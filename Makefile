@@ -3,6 +3,7 @@ check-envs:
 	@test -n "${GITHUB_TOKEN}"
 	@test -n "${PULL_REQUEST_ID}"
 	test -n "${BRANCH_NAME}"
+	test -n "${TARGET_BRANCH_NAME}"
 
 sonarcloud: check-envs
 	@./gradlew sonarqube \
@@ -13,4 +14,5 @@ sonarcloud: check-envs
 		-Dsonar.github.oauth=${GITHUB_TOKEN} \
 		-Dsonar.github.repository='S64/example-sonarcloud-android' \
 		-Dsonar.github.pullRequest=${PULL_REQUEST_ID} \
-		-Dsonar.branch.name=${BRANCH_NAME}
+		-Dsonar.branch.name=${BRANCH_NAME} \
+		-Dsonar.branch.target=${TARGET_BRANCH_NAME}

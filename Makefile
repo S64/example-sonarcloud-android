@@ -11,5 +11,4 @@ sonarcloud: check-envs
 		-Dsonar.login=${SONAR_TOKEN} \
 		-Dsonar.github.oauth=${GITHUB_TOKEN} \
 		-Dsonar.github.repository='S64/example-sonarcloud-android' \
-		-Dsonar.github.pullRequest=${PULL_REQUEST_ID} \
-		-Dsonar.analysis.mode=preview
+		-Dsonar.github.pullRequest=${PULL_REQUEST_ID}

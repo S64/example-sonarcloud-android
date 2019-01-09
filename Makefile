@@ -32,7 +32,7 @@ check-env-repository_slug:
 	test -n "${REPOSITORY_SLUG}"
 
 sonarcloud:
-	if ( [ ! -z "${CIRCLE_PULL_REQUEST}" ] ); then \
+	@if ( [ ! -z "${CIRCLE_PULL_REQUEST}" ] ); then \
 		echo 'Pull Request detected.'; \
 		$(MAKE) sonarcloud-pullreq; \
 	else \

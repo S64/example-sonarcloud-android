@@ -31,11 +31,6 @@ check-env-sonar_project_key:
 check-env-repository_slug:
 	test -n "${REPOSITORY_SLUG}"
 
-set-upstreams: check-env-branch_name check-env-target_branch_name
-	git branch --set-upstream-to=origin/${TARGET_BRANCH_NAME} ${TARGET_BRANCH_NAME}
-	git branch --set-upstream-to=origin/${CIRCLE_BRANCH} ${CIRCLE_BRANCH}
-	git fetch --all
-
 sonarcloud:
 	@if ( [ ! -z "${CIRCLE_PULL_REQUEST}" ] ); then \
 		echo 'Pull Request detected.'; \
@@ -56,7 +51,8 @@ sonarcloud-pullreq: check-envs-pullreq
          -Dsonar.pullrequest.key=${CIRCLE_PR_NUMBER} \
          -Dsonar.pullrequest.provider=github \
          -Dsonar.pullrequest.github.repository=${REPOSITORY_SLUG} \
-         -Dsonar.login=${SONAR_TOKEN}
+         -Dsonar.login=${SONAR_TOKEN} \
+         -Dsonar.scm.disabled=true
 
 sonarcloud-merge: check-envs-merge
 	@./gradlew sonarqube --info \
@@ -64,4 +60,5 @@ sonarcloud-merge: check-envs-merge
 		-Dsonar.projectKey=${SONAR_PROJECT_KEY} \
 		-Dsonar.host.url=https://sonarcloud.io \
 		-Dsonar.branch.name=${CIRCLE_BRANCH} \
-		-Dsonar.login=${SONAR_TOKEN}
+		-Dsonar.login=${SONAR_TOKEN} \
+		-Dsonar.scm.disabled=true

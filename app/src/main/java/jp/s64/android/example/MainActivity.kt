@@ -5,6 +5,8 @@ import android.os.Bundle
 
 class MainActivity : AppCompatActivity() {
 
+    private var unusedProperty: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)

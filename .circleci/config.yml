@@ -1,0 +1,18 @@
+version: 2.1
+
+executors:
+  android-sdk:
+    docker:
+      - image: circleci/android:api-28
+
+jobs:
+  post-sonarcloud:
+    executor: android-sdk
+    steps:
+      - checkout
+      - run: make -j$(nproc) sonarcloud
+
+workflows:
+  test:
+    jobs:
+      - post-sonarcloud

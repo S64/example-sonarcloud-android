@@ -4,14 +4,11 @@ REPOSITORY_SLUG:=${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}
 SONAR_ORGANIZATION:=s64-github
 SONAR_PROJECT_KEY:=example-sonarcloud-android
 
-check-envs-pullreq: check-env-sonar_token check-env-github_token check-env-branch_name check-env-pr_id check-env-target_branch_name check-env-sonar_org check-env-sonar_project_key check-env-repository_slug
+check-envs-pullreq: check-env-sonar_token check-env-branch_name check-env-pr_id check-env-target_branch_name check-env-sonar_org check-env-sonar_project_key check-env-repository_slug
 check-envs-merge: check-env-sonar_token check-env-branch_name check-env-sonar_org check-env-sonar_project_key
 
 check-env-sonar_token:
 	@test -n "${SONAR_TOKEN}"
-
-check-env-github_token:
-	@test -n "${GITHUB_TOKEN}"
 
 check-env-branch_name:
 	test -n "${CIRCLE_BRANCH}"
@@ -45,7 +42,6 @@ sonarcloud-pullreq: check-envs-pullreq
          -Dsonar.organization=${SONAR_ORGANIZATION} \
          -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
          -Dsonar.host.url=https://sonarcloud.io \
-         -Dsonar.pullrequest.github.token.secured=${GITHUB_TOKEN} \
          -Dsonar.pullrequest.base=${TARGET_BRANCH_NAME} \
          -Dsonar.pullrequest.branch=${CIRCLE_BRANCH} \
          -Dsonar.pullrequest.key=${CIRCLE_PR_NUMBER} \

@@ -35,9 +35,11 @@ sonarcloud:
 	@if ( [ ! -z "${CIRCLE_PULL_REQUEST}" ] ); then \
 		echo 'Pull Request detected.'; \
 		$(MAKE) sonarcloud-pullreq; \
-	else \
+	elif ( [ "${TARGET_BRANCH_NAME}" == "${CIRCLE_BRANCH}" ] ); then \
 		echo 'Merge detected.'; \
 		$(MAKE) sonarcloud-merge; \
+	else
+		echo 'NOTE: This workflow is not pullreq. Do nothing.';
 	fi
 
 sonarcloud-pullreq: check-envs-pullreq

@@ -9,6 +9,8 @@ jobs:
   post-sonarcloud:
     executor: android-sdk
     steps:
+      - run: mkdir -p $ANDROID_HOME/licenses
+      - run: echo -n $ANDROID_SDK_LICENSE_BASE64 | base64 --decode > ${ANDROID_HOME}/licenses/android-sdk-license
       - checkout
       - run: make -j$(nproc) sonarcloud
 

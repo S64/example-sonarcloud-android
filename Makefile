@@ -35,7 +35,7 @@ sonarcloud:
 	@if ( [ ! -z "${CIRCLE_PULL_REQUEST}" ] ); then \
 		echo 'Pull Request detected.'; \
 		$(MAKE) sonarcloud-pullreq; \
-	elif ( [ "${TARGET_BRANCH_NAME}" == "${CIRCLE_BRANCH}" ] ); then \
+	elif ( [ "${TARGET_BRANCH_NAME}" = "${CIRCLE_BRANCH}" ] ); then \
 		echo 'Merge detected.'; \
 		$(MAKE) sonarcloud-merge; \
 	else \

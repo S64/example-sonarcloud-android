@@ -38,7 +38,7 @@ sonarcloud:
 	elif ( [ "${TARGET_BRANCH_NAME}" == "${CIRCLE_BRANCH}" ] ); then \
 		echo 'Merge detected.'; \
 		$(MAKE) sonarcloud-merge; \
-	else
+	else \
 		echo 'NOTE: This workflow is not pullreq. Do nothing.';
 	fi
 
